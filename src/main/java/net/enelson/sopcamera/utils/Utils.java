@@ -23,9 +23,12 @@ import org.bukkit.map.MapView;
 
 import net.enelson.sopcamera.SopCamera;
 import net.enelson.sopcamera.data.Renderer;
+import net.enelson.sopli.lib.text.TextUtils;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Utils {
+	private static final TextUtils TEXT_UTILS = new TextUtils();
+
 	
 	public static ItemStack createCamera() {
 		net.minecraft.world.item.ItemStack stack = CraftItemStack.asNMSCopy(new ItemStack(Material.SHEARS));
@@ -37,9 +40,9 @@ public class Utils {
 		ItemStack item = CraftItemStack.asBukkitCopy(stack);
 		item.setAmount(1);
 		ItemMeta meta  = item.getItemMeta();
-		meta.setDisplayName(SopCamera.getInstance().getConfig().getString("locale.name"));
+		meta.setDisplayName(TEXT_UTILS.color(SopCamera.getInstance().getConfig().getString("locale.name")));
 		List<String> lore = new ArrayList<>();
-		lore.add(SopCamera.getInstance().getConfig().getString("locale.durability") + ": " + durability +"/" + durability);
+		lore.add(TEXT_UTILS.color(SopCamera.getInstance().getConfig().getString("locale.durability") + ": " + durability +"/" + durability));
 		meta.setLore(lore);
 		meta.setCustomModelData(SopCamera.getInstance().getConfig().getInt("item.model"));
 		item.setItemMeta(meta);
@@ -80,7 +83,7 @@ public class Utils {
 		int maxDurability = tag.h("SopCamera-maxdurability");
 		if(durability > maxDurability)
 			durability = maxDurability;
-		lore.add(SopCamera.getInstance().getConfig().getString("locale.durability") + ": " + durability +"/" + maxDurability);
+		lore.add(TEXT_UTILS.color(SopCamera.getInstance().getConfig().getString("locale.durability") + ": " + durability +"/" + maxDurability));
 
 		meta.setLore(lore);
 		
