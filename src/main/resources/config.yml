@@ -1,0 +1,15 @@
+camera:
+  transparentWater: true
+  shadows: true
+item:
+  model: 1000
+  durability: 100
+  
+photoCommands:
+  - "atotalstats addstat %player% photo-total 1"
+  - "acyberlevelsextention addexp %player% 50"
+  
+locale:
+  name: "###alocales_roleplay_item-custom-camera###"
+  durability: "###alocales_roleplay_item-custom-pot-lore-durability###"
+
