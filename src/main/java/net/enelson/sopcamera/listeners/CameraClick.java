@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import net.enelson.sopcamera.SopCamera;
+import net.enelson.sopcamera.event.PhotoTakeEvent;
 import net.enelson.sopcamera.utils.Utils;
 
 import java.util.List;
@@ -75,6 +76,7 @@ public class CameraClick implements Listener {
 			@Override
 			public void run() {
 				ItemStack photo = Utils.takePicture(player);
+				Bukkit.getPluginManager().callEvent(new PhotoTakeEvent(player));
 				if (player.getInventory().addItem(photo).size() != 0) {
 					player.getWorld().dropItem(player.getLocation(), photo);
 				}
